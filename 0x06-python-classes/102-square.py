@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """
-Module: 101-square
+Module: 102-square
 Class: Square
-Defines a square with private size and position attributes.
+Defines a square with private size attribute and comparators based on area.
 """
 
 class Square:
@@ -11,20 +11,14 @@ class Square:
     Defines a square.
     """
 
-    def __init__(self, size=0, position=(0, 0)):
+    def __init__(self, size=0):
         """
         Initializes a new Square instance.
 
         Parameters:
-        - size (int): The size of the square (optional, default is 0).
-        - position (tuple): The position of the square (optional, default is (0, 0)).
-
-        Raises:
-        - TypeError: If size is not an integer or position is not a tuple of 2 positive integers.
-        - ValueError: If size is less than 0 or position contains non-positive integers.
+        - size: The size of the square (must be a number).
         """
         self.size = size
-        self.position = position
 
     @property
     def size(self):
@@ -32,7 +26,7 @@ class Square:
         Getter method for the size attribute.
 
         Returns:
-        - int: The size of the square.
+        - int or float: The size of the square.
         """
         return self.__size
 
@@ -42,80 +36,97 @@ class Square:
         Setter method for the size attribute.
 
         Parameters:
-        - value: The new value for the size attribute (must be an integer).
+        - value: The new value for the size attribute (must be a number).
 
         Raises:
-        - TypeError: If value is not an integer.
+        - TypeError: If value is not a number (float or integer).
         - ValueError: If value is less than 0.
         """
-        if not isinstance(value, int):
-            raise TypeError("size must be an integer")
+        if not isinstance(value, (float, int)):
+            raise TypeError("size must be a number")
 
         if value < 0:
             raise ValueError("size must be >= 0")
 
         self.__size = value
 
-    @property
-    def position(self):
-        """
-        Getter method for the position attribute.
-
-        Returns:
-        - tuple: The position of the square.
-        """
-        return self.__position
-
-    @position.setter
-    def position(self, value):
-        """
-        Setter method for the position attribute.
-
-        Parameters:
-        - value (tuple): The new value for the position.
-
-        Raises:
-        - TypeError: If value is not a tuple of 2 positive integers.
-        - ValueError: If value contains non-positive integers.
-        """
-        if not isinstance(value, tuple) or len(value) != 2 or not all(isinstance(i, int) for i in value) or any(i < 0 for i in value):
-            raise TypeError("position must be a tuple of 2 positive integers")
-
-        self.__position = value
-
     def area(self):
         """
         Calculates the area of the square.
 
         Returns:
-        - int: The area of the square.
+        - int or float: The area of the square.
         """
         return self.__size ** 2
 
-    def my_print(self):
+    def __eq__(self, other):
         """
-        Prints the square with the character #, using the position attribute.
+        Equality comparator based on the square area.
 
-        If size is equal to 0, prints an empty line.
-        """
-        if self.__size == 0:
-            print()
-        else:
-            for _ in range(self.__position[1]):
-                print()
-            for _ in range(self.__size):
-                print(" " * self.__position[0] + "#" * self.__size)
-
-    def __str__(self):
-        """
-        Returns a string representation of the square.
+        Parameters:
+        - other: The other square to compare.
 
         Returns:
-        - str: A string representation of the square.
+        - bool: True if the areas are equal, False otherwise.
         """
-        result = []
-        for _ in range(self.__position[1]):
-            result.append('')
-        for _ in range(self.__size):
-            result.append(' ' * self.__position[0] + '#' * self.__size)
-        return '\n'.join(result)
+        return self.area() == other.area()
+
+    def __ne__(self, other):
+        """
+        Inequality comparator based on the square area.
+
+        Parameters:
+        - other: The other square to compare.
+
+        Returns:
+        - bool: True if the areas are not equal, False otherwise.
+        """
+        return self.area() != other.area()
+
+    def __lt__(self, other):
+        """
+        Less than comparator based on the square area.
+
+        Parameters:
+        - other: The other square to compare.
+
+        Returns:
+        - bool: True if the area is less than the other square's area, False otherwise.
+        """
+        return self.area() < other.area()
+
+    def __le__(self, other):
+        """
+        Less than or equal to comparator based on the square area.
+
+        Parameters:
+        - other: The other square to compare.
+
+        Returns:
+        - bool: True if the area is less than or equal to the other square's area, False otherwise.
+        """
+        return self.area() <= other.area()
+
+    def __gt__(self, other):
+        """
+        Greater than comparator based on the square area.
+
+        Parameters:
+        - other: The other square to compare.
+
+        Returns:
+        - bool: True if the area is greater than the other square's area, False otherwise.
+        """
+        return self.area() > other.area()
+
+    def __ge__(self, other):
+        """
+        Greater than or equal to comparator based on the square area.
+
+        Parameters:
+        - other: The other square to compare.
+
+        Returns:
+        - bool: True if the area is greater than or equal to the other square's area, False otherwise.
+        """
+        return self.area() >= other.area()
