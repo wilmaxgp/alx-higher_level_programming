@@ -1,0 +1,32 @@
+# Test cases for add_integer function
+
+# Test case 1: Basic addition
+>>> add_integer(1, 2)
+3
+
+# Test case 2: Addition with negative numbers
+>>> add_integer(100, -2)
+98
+
+# Test case 3: Default value for b
+>>> add_integer(2)
+100
+
+# Test case 4: Addition with float numbers
+>>> add_integer(100.3, -2)
+98
+
+# Test case 5: TypeError for string input
+>>> try:
+...     add_integer(4, "School")
+... except Exception as e:
+...     print(e)
+b must be an integer
+
+# Test case 6: TypeError for None input
+>>> try:
+...     add_integer(None)
+... except Exception as e:
+...     print(e)
+a must be an integer
+
