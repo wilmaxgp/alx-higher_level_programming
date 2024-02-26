@@ -1,0 +1,39 @@
+#!/usr/bin/python3
+"""
+Test cases for print_square function.
+"""
+
+import unittest
+from ..4-print_square import print_square
+
+class TestPrintSquare(unittest.TestCase):
+    def test_print_square_with_positive_size(self):
+        with captured_output() as (out, err):
+            print_square(4)
+        output = out.getvalue().strip()
+        self.assertEqual(output, "####\n####\n####\n####")
+
+    def test_print_square_with_zero_size(self):
+        with captured_output() as (out, err):
+            print_square(0)
+        output = out.getvalue().strip()
+        self.assertEqual(output, "")
+
+    def test_print_square_with_size_one(self):
+        with captured_output() as (out, err):
+            print_square(1)
+        output = out.getvalue().strip()
+        self.assertEqual(output, "#")
+
+    def test_print_square_with_negative_size(self):
+        with self.assertRaises(ValueError) as cm:
+            print_square(-1)
+        self.assertEqual(str(cm.exception), "size must be >= 0")
+
+    def test_non_integer_size(self):
+        with self.assertRaises(TypeError) as cm:
+            print_square(2.5)
+        self.assertEqual(str(cm.exception), "size must be an integer")
+
+if __name__ == "__main__":
+    unittest.main()
