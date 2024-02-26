@@ -1,0 +1,42 @@
+#!/usr/bin/python3
+"""
+Test cases for matrix_divided function.
+"""
+
+import unittest
+from ..2-matrix_divided import matrix_divided
+
+class TestMatrixDivided(unittest.TestCase):
+    def test_divide_matrix_by_number(self):
+        matrix = [
+            [1, 2, 3],
+            [4, 5, 6]
+        ]
+        self.assertEqual(matrix_divided(matrix, 2), [[0.5, 1.0, 1.5], [2.0, 2.5, 3.0]])
+
+    def test_divide_matrix_by_zero(self):
+        matrix = [
+            [1, 2, 3],
+            [4, 5, 6]
+        ]
+        with self.assertRaises(ZeroDivisionError):
+            matrix_divided(matrix, 0)
+
+    def test_non_numeric_divisor(self):
+        matrix = [
+            [1, 2, 3],
+            [4, 5, 6]
+        ]
+        with self.assertRaises(TypeError):
+            matrix_divided(matrix, '2')
+
+    def test_invalid_matrix(self):
+        matrix = [
+            [1, 2, 3],
+            [4, 5]
+        ]
+        with self.assertRaises(TypeError):
+            matrix_divided(matrix, 2)
+
+if __name__ == "__main__":
+    unittest.main()
