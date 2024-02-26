@@ -1,0 +1,43 @@
+#!/usr/bin/python3
+"""
+Test cases for text_indentation function.
+"""
+
+import unittest
+from ..5-text_indentation import text_indentation
+
+class TestTextIndentation(unittest.TestCase):
+    def test_text_with_period(self):
+        with captured_output() as (out, err):
+            text_indentation("Hello. How are you?")
+        output = out.getvalue().strip()
+        expected_output = "Hello.\n\nHow are you?\n"
+        self.assertEqual(output, expected_output)
+
+    def test_text_with_question_mark(self):
+        with captured_output() as (out, err):
+            text_indentation("What is your name?")
+        output = out.getvalue().strip()
+        expected_output = "What is your name?\n\n"
+        self.assertEqual(output, expected_output)
+
+    def test_text_with_colon(self):
+        with captured_output() as (out, err):
+            text_indentation("My name is: John.")
+        output = out.getvalue().strip()
+        expected_output = "My name is:\n\nJohn.\n"
+        self.assertEqual(output, expected_output)
+
+    def test_empty_text(self):
+        with captured_output() as (out, err):
+            text_indentation("")
+        output = out.getvalue().strip()
+        self.assertEqual(output, "")
+
+    def test_non_string_input(self):
+        with self.assertRaises(TypeError) as cm:
+            text_indentation(123)
+        self.assertEqual(str(cm.exception), "text must be a string")
+
+if __name__ == "__main__":
+    unittest.main()
