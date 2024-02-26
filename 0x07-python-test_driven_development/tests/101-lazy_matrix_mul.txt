@@ -1,0 +1,42 @@
+#!/usr/bin/python3
+"""
+Test cases for lazy_matrix_mul function.
+"""
+
+import unittest
+from numpy.testing import assert_array_equal
+from ..101-lazy_matrix_mul import lazy_matrix_mul
+
+class TestLazyMatrixMul(unittest.TestCase):
+    def test_lazy_matrix_mul_2x2(self):
+        result = lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
+        expected_result = [[7, 10], [15, 22]]
+        assert_array_equal(result, expected_result)
+
+    def test_lazy_matrix_mul_1x2_2x2(self):
+        result = lazy_matrix_mul([[1, 2]], [[3, 4], [5, 6]])
+        expected_result = [[13, 16]]
+        assert_array_equal(result, expected_result)
+
+    def test_lazy_matrix_mul_empty_matrices(self):
+        with self.assertRaises(ValueError) as cm:
+            lazy_matrix_mul([], [])
+        self.assertEqual(str(cm.exception), "m_a can't be empty or m_b can't be empty")
+
+    def test_lazy_matrix_mul_invalid_input(self):
+        with self.assertRaises(TypeError) as cm:
+            lazy_matrix_mul([[1, 2], [3, 4]], [1, 2])
+        self.assertEqual(str(cm.exception), "m_a must be a list of lists or m_b must be a list of lists")
+
+    def test_lazy_matrix_mul_invalid_size(self):
+        with self.assertRaises(ValueError) as cm:
+            lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2, 3], [4, 5, 6]])
+        self.assertEqual(str(cm.exception), "m_a and m_b can't be multiplied")
+
+    def test_lazy_matrix_mul_non_numeric_elements(self):
+        with self.assertRaises(TypeError) as cm:
+            lazy_matrix_mul([[1, 2], [3, 'a']], [[1, 2], [3, 4]])
+        self.assertEqual(str(cm.exception), "m_a should contain only integers or floats")
+
+if __name__ == "__main__":
+    unittest.main()
