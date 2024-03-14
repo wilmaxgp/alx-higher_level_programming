@@ -1,5 +1,2 @@
-
-USE hbtn_0d_tvshows;
-SELECT name, genre_id
-FROM shows
-ORDER BY id ASC;
+-- SQL script to list all cities contained in the database hbtn_0d_usa by ascending order
+SELECT cities.id, cities.name, states.name FROM cities INNER JOIN states ON cities.state_id = states.id ORDER BY cities.id ASC;

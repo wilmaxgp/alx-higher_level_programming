@@ -1,6 +1,2 @@
-
-USE hbtn_0d_tvshows;
-SELECT shows.name, COALESCE(genres.name, 'Unknown') AS genre_name
-FROM shows
-LEFT JOIN genres ON shows.genre_id = genres.id
-ORDER BY shows.id ASC;
+-- SQL script to list all cities contained in the database hbtn_0d_usa by ascending order
+SELECT * FROM cities ORDER BY name ASC;

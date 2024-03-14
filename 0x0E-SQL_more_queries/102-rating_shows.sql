@@ -1,6 +1,7 @@
+-- SQL script to list all shows from hbtn_0d_tvshows_rate by their rating.
 
-USE hbtn_0d_tvshows;
-SELECT shows.name, COUNT(DISTINCT season) AS num_seasons
-FROM shows
-JOIN episodes ON shows.id = episodes.show_id
-GROUP BY shows.name;
+SELECT tv_shows.title, SUM(tv_show_ratings.rating) AS rating_sum
+FROM tv_shows
+JOIN tv_show_ratings ON tv_shows.id = tv_show_ratings.tv_show_id
+GROUP BY tv_shows.title
+ORDER BY rating_sum DESC;

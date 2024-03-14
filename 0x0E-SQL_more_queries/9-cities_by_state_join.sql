@@ -1,4 +1,8 @@
+-- SQL script to create the database hbtn_0d_usa and add San Francisco to the cities table
+CREATE DATABASE IF NOT EXISTS hbtn_0d_usa;
+USE hbtn_0d_usa;
 
-SELECT cities.* 
-FROM cities
-ORDER BY cities.state_id ASC, cities.id ASC;
+INSERT INTO cities (state_id, name) VALUES (
+    (SELECT id FROM states WHERE name = 'California'),
+    'San Francisco'
+);

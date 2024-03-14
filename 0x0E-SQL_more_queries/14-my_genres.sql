@@ -1,3 +1,2 @@
-
-USE hbtn_0d_tvshows;
-SELECT description FROM shows WHERE name = 'Dexter';
+-- SQL script to delete all states starting with the letter 'A' from the states table
+DELETE FROM states WHERE name LIKE 'A%';
