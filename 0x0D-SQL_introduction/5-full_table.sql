@@ -1,6 +1,6 @@
 -- SQL script to print full description of table first_table from database hbtn_0c_0
 
-first_tableCREATE TABLE `first_table` (
+CREATE TABLE `first_table` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(128) DEFAULT NULL,
   `c` char(1) DEFAULT NULL,
