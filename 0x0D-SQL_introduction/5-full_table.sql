@@ -1,11 +1,7 @@
 -- SQL script to print full description of table first_table from database hbtn_0c_0
 
 SELECT CONCAT(
-    TABLE_NAME, 
-    'CREATE TABLE ',
-    '`', 
-    TABLE_NAME, 
-    '` (',
+    'CREATE TABLE `', TABLE_NAME, '` (',
     GROUP_CONCAT(
         CONCAT(
             '`', COLUMN_NAME, '` ',
@@ -16,7 +12,7 @@ SELECT CONCAT(
             IF(EXTRA = 'auto_increment', ' AUTO_INCREMENT', '')
         )
         ORDER BY ORDINAL_POSITION
-        SEPARATOR ',\n  '
+        SEPARATOR ', '
     ),
     ') ENGINE=', ENGINE,
     ' DEFAULT CHARSET=', CHARACTER_SET_NAME, 
