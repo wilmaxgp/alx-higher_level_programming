@@ -1,12 +1,11 @@
 #!/usr/bin/node
 
-const numString = process.argv[2];
+const num = parseInt(process.argv[2]);
 
-if (!numString.match(/^[-]?[0-9]+$/)) {
+if (isNaN(num) || num <= 0) {
   console.log('Missing number of occurrences');
 } else {
-  const num = parseInt(numString);
-  const absNum = Math.abs(num);
+  const absNum = Math.abs(num); // Convert negative number to its absolute value
   for (let i = 0; i < absNum; i++) {
     console.log('C is fun');
   }
