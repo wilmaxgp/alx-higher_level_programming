@@ -7,20 +7,14 @@ if (process.argv.length !== 5) {
   process.exit(1);
 }
 
-const file1Path = process.argv[2];
-const file2Path = process.argv[3];
-const destinationPath = process.argv[4];
+const [,, file1, file2, destination] = process.argv;
 
 try {
-  const file1Content = fs.readFileSync(file1Path, 'utf8');
-  const file2Content = fs.readFileSync(file2Path, 'utf8');
-
-  const concatenatedContent = file1Content + file2Content;
-
-  fs.writeFileSync(destinationPath, concatenatedContent);
-
+  const content1 = fs.readFileSync(file1, 'utf-8');
+  const content2 = fs.readFileSync(file2, 'utf-8');
+  fs.writeFileSync(destination, content1 + content2);
   console.log('Concatenation successful!');
-} catch (error) {
-  console.error('Error:', error.message);
+} catch (err) {
+  console.error('Error:', err.message);
 }
 
