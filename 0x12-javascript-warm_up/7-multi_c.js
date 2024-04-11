@@ -1,19 +1,15 @@
 #!/usr/bin/node
 
-const numString = process.argv[2];
+const input = process.argv[2];
 
-if (!numString || isNaN(numString)) {
-  console.log('Missing number of occurrences');
+if (!input || isNaN(input)) {
+  console.log('Invalid input. Please provide a valid number.');
 } else {
-  const num = parseInt(numString);
-  if (num <= 0) {
-    console.log('Missing number of occurrences');
-  } else {
-    let i = 0;
-    while (i < num) {
-      console.log('C is fun');
-      i++;
-    }
+  const count = Number(input);
+  let i = 0;
+  while (i < count) {
+    console.log('Hello world');
+    i++;
   }
 }
 
