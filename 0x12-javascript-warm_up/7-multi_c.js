@@ -3,12 +3,12 @@
 const input = process.argv[2];
 
 if (!input || isNaN(input)) {
-  console.log('Invalid input. Please provide a valid number.');
+  console.log('Missing number of occurrences');
 } else {
   const count = Number(input);
   let i = 0;
   while (i < count) {
-    console.log('Hello world');
+    console.log('C is fun');
     i++;
   }
 }
