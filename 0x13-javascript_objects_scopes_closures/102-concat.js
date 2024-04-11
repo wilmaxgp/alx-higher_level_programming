@@ -1,12 +1,28 @@
 #!/usr/bin/node
+
 const fs = require('fs');
 
-const fileA = process.argv[2];
-const fileB = process.argv[3];
-const fileC = process.argv[4];
+// Check if the correct number of arguments are provided
+if (process.argv.length !== 5) {
+  console.log('Usage: ./102-concat.js <file1> <file2> <destination>');
+  process.exit(1);
+}
 
-const contentA = fs.readFileSync(fileA, 'utf8');
-const contentB = fs.readFileSync(fileB, 'utf8');
+const file1Path = process.argv[2];
+const file2Path = process.argv[3];
+const destinationPath = process.argv[4];
 
-const concatenatedContent = contentA + '\n' + contentB;
-fs.writeFileSync(fileC, concatenatedContent);
+// Read the contents of the first file
+const file1Content = fs.readFileSync(file1Path, 'utf8');
+
+// Read the contents of the second file
+const file2Content = fs.readFileSync(file2Path, 'utf8');
+
+// Concatenate the contents of the two files
+const concatenatedContent = file1Content + file2Content;
+
+// Write the concatenated content to the destination file
+fs.writeFileSync(destinationPath, concatenatedContent);
+
+console.log(`Files ${file1Path} and ${file2Path} concatenated successfully to ${destinationPath}`);
+
