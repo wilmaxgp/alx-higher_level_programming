@@ -10,4 +10,3 @@ const content1 = fs.readFileSync(file1).toString();
 const content2 = fs.readFileSync(file2).toString();
 
 fs.writeFileSync(destination, content1 + content2);
-
