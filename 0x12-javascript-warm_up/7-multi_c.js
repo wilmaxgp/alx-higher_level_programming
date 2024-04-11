@@ -1,11 +1,14 @@
 #!/usr/bin/node
 
-const num = parseInt(process.argv[2]);
+const numString = process.argv[2];
 
-if (isNaN(num)) {{
+if (!numString.match(/^[-]?[0-9]+$/)) {
   console.log('Missing number of occurrences');
 } else {
-  for (let i = 0; i < num; i++) {
+  const num = parseInt(numString);
+  const absNum = Math.abs(num);
+  for (let i = 0; i < absNum; i++) {
     console.log('C is fun');
   }
 }
+
