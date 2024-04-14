@@ -2,8 +2,7 @@
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from relationship_state import Base, State
-from relationship_city import City
+from relationship_state import State
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
@@ -15,11 +14,12 @@ if __name__ == "__main__":
                            format(username, password, database),
                            pool_pre_ping=True)
 
-    Base.metadata.create_all(engine)
-
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    california = State(name="California", cities=[City(name="San Francisco")])
-    session.add(california)
-    session.commit()
+    states = session.query(State).all()
+
+    for state in states:
+        print("{}:".format(state.name))
+        for city in state.cities:
+            print("\t{}: {}".format(city.id, city.name))
